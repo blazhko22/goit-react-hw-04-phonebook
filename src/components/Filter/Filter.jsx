@@ -1,16 +1,15 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
-function Filter({ value, onChangeFilter }) {
+function Filter({ value, onChengeValue }) {
   return (
     <label className={s.label}>
-      Find contacts by name
+      find contact by name
       <input
-        name="filter"
+        onChange={onChengeValue}
         type="text"
+        name="filter"
         value={value}
-        onChange={(e)=>onChangeFilter(e.target.value)}
       />
     </label>
   );
@@ -20,5 +19,5 @@ export default Filter;
 
 Filter.propTypes = {
   value: PropTypes.string,
-  onChangeFilter: PropTypes.func,
+  onChengeValue: PropTypes.func,
 };

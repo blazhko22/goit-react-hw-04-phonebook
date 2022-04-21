@@ -1,20 +1,19 @@
-import ContactsItem from '../ContactsItem';
-import PropTypes from 'prop-types';
-import s from './ContactList.module.css';
+import PropTypes from "prop-types";
+import s from "./ContactList.module.css";
+import ContactListItem from "../ContactsItem";
 
-function ContactsList({ contacts, onRemoveContact }) {
-  console.log(contacts)
+function ContactList({ contacts, deleteContact }) {
   return (
     <ul className={s.list}>
       {contacts.length > 0 ? (
         contacts.map(({ id, name, number }, index) => (
           <li key={id} className={s.list_item}>
-            <ContactsItem
+            <ContactListItem
               id={id}
               index={index}
               name={name}
               number={number}
-              onRemoveContact={onRemoveContact}
+              deleteContact={deleteContact}
             />
           </li>
         ))
@@ -27,12 +26,11 @@ function ContactsList({ contacts, onRemoveContact }) {
   );
 }
 
-export default ContactsList;
+export default ContactList;
 
-ContactsList.propTypes = {
+ContactList.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   number: PropTypes.string,
-  index: PropTypes.number,
-  onRemoveContact: PropTypes.func,
+  deleteContact: PropTypes.func,
 };

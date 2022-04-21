@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
 import PropTypes from "prop-types";
-import s from './ContactForm.module.css';
+import React, { useState } from "react";
+import s from "./ContactForm.module.css";
+import { nanoid } from "nanoid";
 
-function ContactForm({onSubmit}) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  
-  const handleChange = (e) => {
+function ContactForm({ onSubmit }) {
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
+
+  const onChengeValue = (e) => {
     const { name, value } = e.currentTarget;
     switch (name) {
       case "name":
@@ -21,41 +21,42 @@ function ContactForm({onSubmit}) {
     }
   };
 
-  const handleSubmitForm = event => {
-    event.preventDefault();
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
     const id = nanoid();
     onSubmit({ id, name, number });
     setName("");
     setNumber("");
-    
   };
-
   return (
-    <form className={s.form} onSubmit={handleSubmitForm}>
+    <form className={s.form} onSubmit={handleSubmit}>
       <label>
-        Name
-        <input className={s.input}
-          name="name"
+        name
+        <input
+          className={s.input}
           type="text"
+          name="name"
+          onChange={onChengeValue}
           value={name}
-          onChange={handleChange}
           required
         />
       </label>
-      <label>
-        Number
-        <input className={s.input}
-          name="number"
+      <label className={s.title}>
+        number
+        <input
+          className={s.input}
           type="tel"
+          name="number"
+          onChange={onChengeValue}
           value={number}
-          onChange={handleChange}
           required
         />
       </label>
-      <button type="submit" className={s.button}>Add contact</button>
+      <button className={s.button} type="submit">
+        add to contact
+      </button>
     </form>
   );
-  
 }
 
 export default ContactForm;

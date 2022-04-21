@@ -12,7 +12,7 @@ function Render() {
   useEffect(() => {
     localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts]);
-  const onRemoveContact = (contactId) => {
+  const deleteContact = (contactId) => {
     setContacts(contacts.filter((contact) => contact.id !== contactId));
   };
   const addContact = (newContact) => {
@@ -44,9 +44,9 @@ function Render() {
         <ContactForm onSubmit={addContact} />
       </div>
       <div>
-        <h2 className={s.titleContacts}>Contacts</h2>
+      <h2 className={s.titleContacts}>Contacts</h2>
         <Filter value={filter} onChengeValue={onChengeValue} />
-        <ContactList contacts={filtredLIst()} onRemoveContact={onRemoveContact} />
+        <ContactList contacts={filtredLIst()} deleteContact={deleteContact} />
       </div>
     </div>
   );
